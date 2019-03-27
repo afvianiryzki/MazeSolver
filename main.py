@@ -1,5 +1,4 @@
 import sys
-import readMatrix as mat
 import Matrix as M
 import colorama
 from colorama import Fore, Back, Style
@@ -10,6 +9,5 @@ def main():
     
     maze = M.Matrix(number)
     maze.print()
-
 
 main()

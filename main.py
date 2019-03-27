@@ -9,6 +9,6 @@ def main():
     
     maze = M.Matrix(number)
     maze.print()
-    print(maze.getObstacle())
+    print(maze.getObstacle(), maze.getAvailable())
 
 main()

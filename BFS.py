@@ -1,11 +1,11 @@
-import PriorityQueue as pq
+import RegularQueue as rq
 import Element as el
 import Matrix as M
 
 
-class aStar(object):
+class BFS(object):
     def __init__(self):
-        self.opened = pq.PriorityQueue()
+        self.opened = rq.RegularQueue()
         self.closed = set()
 
         self.element = []
@@ -32,12 +32,6 @@ class aStar(object):
         self.mazeEnd = self.getElement(*matrix.getEnd())
     
     def updateElmt(self, current, nextTo):
-        g = current.gx + 10
-        nextTo.setGx(g)
-        h = self.getHx(nextTo)
-        nextTo.setHx(h)
-        f = g + h
-        nextTo.setFx(f)
         nextTo.setParent(current)
         self.opened.insert(nextTo)
 
@@ -65,9 +59,6 @@ class aStar(object):
             if(self.element[xm][yn].available and self.element[xm][yn] not in self.closed):
                 self.updateElmt(current, self.element[xm][yn])
 
-
-    def getHx(self, elmt):
-        return (10*(abs(self.mazeEnd.x - elmt.x) + abs(self.mazeEnd.y - elmt.y)))
 
     def getPath(self):
         akhir = self.mazeEnd

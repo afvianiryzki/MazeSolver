@@ -70,11 +70,5 @@ class Matrix(object):
                     print("o", end="")
             print()
         print(Fore.RESET)
-
         print(Fore.GREEN, "Your start point : ", self.getStart())
-        print(Fore.RED, "Your end point   : ", self.getEnd())
-        
-        """print(Fore.YELLOW)
-        print("AVAILABLE PATH: ", self.getAvailable())
-        print("OBSTACLES: ", self.getObstacle())
-        print(Fore.RESET)"""
+        print(Fore.RED, "Your end point   : ", self.getEnd(), Fore.RESET)

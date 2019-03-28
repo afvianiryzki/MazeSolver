@@ -1,6 +1,6 @@
 # A simple implementation of Priority Queue 
 # using Queue. 
-class PriorityQueue(object): 
+class RegularQueue(object): 
     def __init__(self): 
         self.queue = [] 
   
@@ -14,14 +14,6 @@ class PriorityQueue(object):
   
     # for popping an element based on Priority 
     def delete(self): 
-        try: 
-            min = 0
-            for i in range(len(self.queue)): 
-                if (self.queue[i].fx < self.queue[min].fx): 
-                    min = i 
-            item = self.queue[min] 
-            del self.queue[min] 
-            return item 
-        except IndexError: 
-            print() 
-            exit()
+        item = self.queue[0]
+        del self.queue[0]
+        return item

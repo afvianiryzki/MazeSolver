@@ -10,6 +10,7 @@ def main():
     
     maze = M.Matrix(number)
     maze.print()
+    
 
     tes = A.aStar()
     tes.createMaze(maze)

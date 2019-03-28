@@ -2,6 +2,7 @@ import PriorityQueue as pq
 import Element as el
 import Matrix as M
 
+
 class aStar(object):
     def __init__(self):
         self.opened = pq.PriorityQueue()
@@ -15,6 +16,7 @@ class aStar(object):
         return self.element[x][y]
 
     def createMaze(self, matrix):
+        self.maze = matrix
         self.mazeRow = matrix.row
         self.mazeCol = matrix.col
         
@@ -71,14 +73,22 @@ class aStar(object):
 
     def letsgo(self):
         current = self.mazeStart
+        self.maze.matrix[current.x][current.y] = 3
+        self.maze.print()
+
         self.closed.add(self.mazeStart)
 
         self.walkTo(current)
         
 
-        #while(len(self.opened.queue)):
-        #    current = 
-
+        while(len(self.opened.queue)):
+            self.closed.add(current)
+            current = self.opened.delete()
+            self.maze.matrix[current.x][current.y] = 3
+            #self.maze.print()
+            self.walkTo(current)
+        
+        self.maze.print()
 
         """print(self.current.x)
         print(self.current.y)

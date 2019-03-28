@@ -4,6 +4,7 @@ import aStar as A
 import colorama
 from colorama import Fore, Back, Style
 
+
 def main():
     infile = open(sys.argv[1]).read()
     number = [item for item in infile.split('\n')]
@@ -15,7 +16,6 @@ def main():
     tes = A.aStar()
     tes.createMaze(maze)
     tes.letsgo()
-    #print(1)
 
 
 main()

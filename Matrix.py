@@ -21,6 +21,12 @@ class Matrix(object):
         ePoint = input().split(" ")
         self.end = [int(num) for num in ePoint]
 
+    def setEl(self, i, j, val):
+        self.matrix[i][j] = val
+    
+    def getEl(self, i, j):
+        return self.matrix[i][j]
+
     def getRow(self):
         return self.row
 
@@ -38,7 +44,6 @@ class Matrix(object):
         for i in range(self.row):
             for j in range(self.col):
                 if (self.matrix[i][j] == 1):
-                    #liObstacle = [i,j]
                     self.obstacle.append([i,j])
         return self.obstacle
 
@@ -57,8 +62,12 @@ class Matrix(object):
             for y in x:
                 if(y == 0):
                     print(" ", end="")
-                else:
+                elif(y== 1):
                     print("▓", end="")
+                elif(y == 3):
+                    print("x", end="")
+                elif(y == 4):
+                    print("o", end="")
             print()
         print(Fore.RESET)
 

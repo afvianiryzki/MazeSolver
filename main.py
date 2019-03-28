@@ -1,5 +1,6 @@
 import sys
 import Matrix as M
+import aStar as A
 import colorama
 from colorama import Fore, Back, Style
 
@@ -9,5 +10,11 @@ def main():
     
     maze = M.Matrix(number)
     maze.print()
+
+    tes = A.aStar()
+    tes.createMaze(maze)
+    tes.letsgo()
+    #print(1)
+
 
 main()

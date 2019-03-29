@@ -2,6 +2,7 @@ import PriorityQueue as pq
 import Element as el
 import Matrix as M
 import main as m
+import turtle
 
 
 class aStar(object):
@@ -43,6 +44,8 @@ class aStar(object):
         self.opened.insert(nextTo)
 
     def walkTo(self, current):
+        s.goto(-400 + (current.y * 24), 400 - (current.x*24))
+        s.stamp()
         xn = current.x
         xm = current.x-1
         xp = current.x+1
@@ -71,14 +74,20 @@ class aStar(object):
         return (10*(abs(self.mazeEnd.x - elmt.x) + abs(self.mazeEnd.y - elmt.y)))
 
     def getPath(self):
+        p.goto(-400 + (self.mazeEnd.y * 24), 400 - (self.mazeEnd.x*24))
+        p.stamp()
         akhir = self.mazeEnd
         path = [[akhir.x, akhir.y]]
         while (akhir is not self.mazeStart):
             self.maze.matrix[akhir.x][akhir.y] = 4
+            p.goto(-400 + (akhir.y * 24), 400 - (akhir.x*24))
+            p.stamp()
             akhir = akhir.parent
             path.append([akhir.x, akhir.y])
         path.append([self.mazeStart.x, self.mazeStart.y])
         self.maze.matrix[akhir.x][akhir.y] = 4
+        p.goto(-400 + (akhir.y * 24), 400 - (akhir.x*24))
+        p.stamp()
 
         
     def letsgo(self):
@@ -87,7 +96,7 @@ class aStar(object):
         self.closed.add(self.mazeStart)
         self.walkTo(current)
         if (current.x == self.mazeEnd.x and current.y == self.mazeEnd.y):
-                return self.getPath()
+            return self.getPath()
         
         while(len(self.opened.queue)):
             self.closed.add(current)
@@ -96,3 +105,39 @@ class aStar(object):
             self.walkTo(current)
             if (current.x == self.mazeEnd.x and current.y == self.mazeEnd.y):
                 return self.getPath()
+
+
+maze = m.main()
+global w
+w = m.wall()
+global f
+f = m.floor()
+global s 
+s = m.search()
+global p
+p = m.path()
+
+global wn
+
+wn = turtle.Screen()
+wn.bgcolor("black")
+wn.screensize(1000,1000) 
+wn.title("A STAR MAZE SOLVER")
+for y in range(maze.row):
+    for x in range(maze.col):
+        character = maze.matrix[y][x]
+        screen_x = -400 + (x * 24)
+        screen_y = 400 - (y * 24)
+
+        if character == 1:
+            w.goto(screen_x, screen_y)
+            w.stamp()
+        elif character == 0:
+            f.goto(screen_x, screen_y)
+            f.stamp()
+
+astar = aStar()
+astar.createMaze(maze)
+astar.letsgo()
+
+wn.mainloop()

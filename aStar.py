@@ -1,6 +1,7 @@
 import PriorityQueue as pq
 import Element as el
 import Matrix as M
+import main as m
 
 
 class aStar(object):
